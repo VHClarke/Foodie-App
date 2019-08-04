@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fit Foodie</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Latest compiled and minified bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="Calorie Counter.css">
+</head>
+<!--
+The body includes the top nav bar and the table. The table
+includes the headings, initial 10 input rows, and buttons along with the total calculation.
+-->
+<body>
+  <section>
+    <div class="table-responsive">
+      <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Simply enter the foods you've eaten and the calories per food.</p>
+      <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Then click calculate to see the total calorie count.</p>
+      <table class="table table-curved" id="calTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Foods</th>
+            <th>Calories</th>
+          </tr>
+        </thead>
+        <form class="" action="/userInput" method="post">
+        <tbody>
+          <tr class="active">
+            <td>1.</td>
+            <td>
+              <input name="foodInsert" type="text"/>
+            </td>
+            <td>
+              <input name="foodCal" type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>2.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>3.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>4.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>5.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>6.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>7.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>8.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>9.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr class="active">
+            <td>10.</td>
+            <td>
+              <input type="text"/>
+            </td>
+            <td>
+              <input type="number"/>
+            </td>
+          </tr>
+          <tr>
+            <td/>
+            <td>
+              <button type="button" id="Add" onclick="addRow()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true" style="padding: 7px"></span>
+              </button>
+              <button id="buttonChange" type="button" onclick="reset()">
+              </form>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true" style="padding: 7px"></span>
+              </button>
+              <input id="buttonChange" type="button" onclick="totalCalories()" />
+              <label id="inAll">Total:</label>
+            </td>
+            <td>
+              <p id="totalCalories">0</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+<script src="main.js"></script>
+
+</body>
+</html>

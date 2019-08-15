@@ -10,17 +10,30 @@
 
   <!-- Latest compiled and minified bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="Calorie Counter.css">
+  <!-- <link rel="stylesheet" type="text/css" href="Calorie Counter.css"> -->
 </head>
-<!--
-The body includes the top nav bar and the table. The table
-includes the headings, initial 10 input rows, and buttons along with the total calculation.
--->
 <body>
-  <section>
-    <div class="table-responsive">
-      <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Simply enter the foods you've eaten and the calories per food.</p>
-      <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Then click calculate to see the total calorie count.</p>
+  <!-- header -->
+  <header>
+    <div id="container">
+      <nav>
+        <ul id="list">
+          <li id="top"><a href="#">Calculate Calories</a></li>
+          <li id="top"><a href="#">Saved Meals</a></li>
+          <li id="top"><a href="#">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!--
+  The body includes the top nav bar and the table. The table
+  includes the headings, initial 10 input rows, and buttons along with the total calculation.
+-->
+<section>
+  <div class="table-responsive">
+    <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Simply enter the foods you've eaten and the calories per food.</p>
+    <p id="textSize" align="center" style="color: rgb(254,198,28); font-weight: bold; font-size: 24px">Then click calculate to see the total calorie count.</p>
+<form id="saving" class="" action="/userInput" method="post">
       <table class="table table-curved" id="calTable">
         <thead>
           <tr>
@@ -29,96 +42,14 @@ includes the headings, initial 10 input rows, and buttons along with the total c
             <th>Calories</th>
           </tr>
         </thead>
-        <form class="" action="/userInput" method="post">
         <tbody>
           <tr class="active">
             <td>1.</td>
             <td>
-              <input name="foodInsert" type="text"/>
+              <input name="foodInsertOne" type="text"/>
             </td>
             <td>
-              <input name="foodCal" type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>2.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>3.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>4.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>5.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>6.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>7.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>8.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>9.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
-            </td>
-          </tr>
-          <tr class="active">
-            <td>10.</td>
-            <td>
-              <input type="text"/>
-            </td>
-            <td>
-              <input type="number"/>
+              <input class="inputNum" name="foodCalOne" type="number"/>
             </td>
           </tr>
           <tr>
@@ -127,24 +58,24 @@ includes the headings, initial 10 input rows, and buttons along with the total c
               <button type="button" id="Add" onclick="addRow()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true" style="padding: 7px"></span>
               </button>
-              <button id="buttonChange" type="button" onclick="reset()">
-              </form>
+              <button id="buttonChangeOne" type="button" onclick="reset()">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true" style="padding: 7px"></span>
               </button>
-              <input id="buttonChange" type="button" onclick="totalCalories()" />
+              <button id="saveButton" type="submit" name="button" onclick="submitIngredients(event)">Save</button>
+              <a id="buttonChangeTwo" onclick="totalCalories(event)">Calculate</a>
               <label id="inAll">Total:</label>
             </td>
             <td>
-              <p id="totalCalories">0</p>
+              <input name="numTotal" type="number" id="totalCalories" value="0"></input>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
+        <input hidden id="array" type="text" name="holdArray" value="">
+    </form>
+  </div>
+</section>
 
 <script src="main.js"></script>
-
 </body>
 </html>

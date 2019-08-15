@@ -24,23 +24,48 @@ module.exports = function(app, passport, db) {
         res.redirect('/');
     });
 
-//  Calorie Counter ===================================================================
+//  Calories Saved Page ===================================================================
+app.get('/userinfo', isLoggedIn, function(req, res) {
+    db.collection('caloriecount').find().toArray((err, result) => {
+      console.log("User Info", result)
+      if (err) return console.log(err)
+      res.render('userinfo.ejs', {
+        user : req.user,
+        ingredients: result
+      })
+    })
+});
 
+app.post('/saveinfo', (req, res) => {
+  db.collection('savedFood').save({message: req.body.msg,funds:req.body.fnd,}, (err, result) => {
+    if (err) return console.log(err)
+    console.log('saved to database')
+    res.redirect('/')
+  })
+})
 
 // message board routes ===============================================================
 
-    app.post('/userInput', (req, res) => {
-      console.log(req.body.foodInsert)
-      db.collection('caloriecount').save({name: req.body.name}, (err, result) => {
+    app.post('/userInput', (req,res) => {
+      console.log("called",req.body)
+      db.collection('caloriecount').save(
+        {
+        submittedList: req.body.submittedList,
+        date: new Date()
+      },
+      (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
-        res.redirect('/profile')
+        res.redirect('/userinfo')
       })
     })
 
+
+
+
     app.put('/userInput', (req, res) => {
       db.collection('caloriecount')
-      .findOneAndUpdate({name: req.body.foodInsert, foodCal: req.body.foodcal}, {
+      .findOneAndUpdate({name: req.body.foodInsert, foodCal: req.body.foodCal}, {
         $set: {
           name: req.body.foodInsert,
            foodCal: req.body.foodCal
@@ -125,7 +150,6 @@ module.exports = function(app, passport, db) {
     });
 
 };
-
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

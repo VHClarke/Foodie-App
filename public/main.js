@@ -1,74 +1,3 @@
-var thumbUp = document.getElementsByClassName("fa-thumbs-up");
-var trash = document.getElementsByClassName("fa-trash");
-var thumbDown = document.getElementsByClassName("fa-thumbs-down");
-
-Array.from(thumbDown).forEach(function (element) {
-  element.addEventListener('click', function(){
-    const name = this.parentNode.parentNode.childNodes[1].innerText //??
-    const msg = this.parentNode.parentNode.childNodes[3].innerText //?
-    const thumbDown = parseFloat(this.parentNode.parentNode.childNodes[5].innerText) //?
-    fetch('decrease', {
-      method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        'name': name,
-        'msg': msg,
-        'thumbDown':thumbDown //?
-      })
-    })
-    .then(response => {
-      if (response.ok) return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      window.location.reload(true)
-    })
-  });
-})
-
-Array.from(thumbUp).forEach(function(element) {
-  element.addEventListener('click', function(){
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
-    const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-    fetch('messages', {
-      method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        'name': name,
-        'msg': msg,
-        'thumbUp':thumbUp
-      })
-    })
-    .then(response => {
-      if (response.ok) return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      window.location.reload(true)
-    })
-  });
-});
-
-Array.from(trash).forEach(function(element) {
-  element.addEventListener('click', function(){
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
-    fetch('messages', {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'name': name,
-        'msg': msg
-      })
-    }).then(function (response) {
-      window.location.reload()
-    })
-  });
-});
-
 //codepen =================================================
 var maxItems = 20;
 var initItemAmount = 10; //this is the intial amount of input rows created in the HTML
@@ -79,13 +8,16 @@ var yellow = "#ffff00";
 var white = "#ffffff";
 
 
+
 /*
 * totalCalories function adds all valid calories in the column of calories by
 * modding the index by the calColumn to see if the index is the correct
 * input field. Those calorie fields are then added together and displayed
 * at the bottom of the table.
 */
-function totalCalories() {
+function totalCalories(e) {
+  console.log(e)
+  e.preventDefault();
   var total = 0;
   var totalCalories = document.getElementById("totalCalories");
   var amountOfInputFields = document.getElementsByTagName("input").length - buttonAmount; //ignores the 3 buttons
@@ -94,13 +26,10 @@ function totalCalories() {
     if ((index % calColumn) == 1) {
       var calInput = document.getElementsByTagName("input")[index];
       var calNum = Number(calInput.value);
-      if (isValid(calInput)) {
-        total += calNum;
-        calInput.style.backgroundColor = white; //needed in order to reset a previously yellowed input to white again
-      }
+      total += calNum;
     }
   }
-  totalCalories.innerHTML = total;
+  totalCalories.value = total;
 }
 
 
@@ -168,4 +97,33 @@ function reset() {
   }
   document.getElementById("totalCalories").innerHTML = 0;
   document.getElementById("Add").style.visibility = "visible";
+}
+
+function submitIngredients(e) {
+  e.preventDefault()
+  let submittedList = [];
+  let ingredientsList = document.getElementsByClassName('active');
+
+  Array.from(ingredientsList).forEach(ingredient => {
+    // const calories = ingredient.childNodes[5].childNodes[1].value;
+    const ingredientValue = ingredient.getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
+    const calories = ingredient.getElementsByTagName('td')[2].getElementsByTagName('input')[0].value;
+
+    submittedList.push({ingredient: ingredientValue, calories: calories})
+  })
+  console.log(submittedList)
+
+  fetch('/userInput', {
+    method: "post",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({submittedList})
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function() {
+    console.log('derp');
+  });
 }

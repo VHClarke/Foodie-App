@@ -1,5 +1,4 @@
 body{
-  padding-top:271px;
   word-wrap:break-word;
   background-image: url("https://cdn.pixabay.com/photo/2016/12/26/17/28/food-1932466_1280.jpg");
   background-repeat: no-repeat;
@@ -21,8 +20,11 @@ html {
 }
 
 .jumbotron.text-center {
-  background-color:;
+  padding: 0px;
+  margin: 0%;
+  background: #e8c4aac9;
   margin-left: 5%;
+      margin-top: 29%;ß
 }
 
 .container {
@@ -86,10 +88,9 @@ input.form-control {
 section {
   width: 30%;
   height: 915px;
-  background-color: rgb(168,144,137);
+  background-color: #442c28d9;
   position: fixed;
   margin-left: 37%;
-  margin-top: -95px;
 }
 
 .jumbotron p {
@@ -111,12 +112,94 @@ section {
   color: yellowgreen;
 }
 
-/* codepen -----------------------------------*/
-
-html {
-  height: 100%;
+a#buttonChangeTwo {
+    /* width: 3%; */
+    /* height: 2px; */
+    border: 2px solid black;
+    border-radius: 10%;
+    padding: 1%;
+    background-color: yellowgreen;
+    color: white;
 }
 
+/* Header/Nav bar ---------------------------------- */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+
+h1 {
+	font-size: 60px;
+	text-align: center;
+	color: #FFF;
+}
+
+h3 {
+	font-size: 30px;
+	text-align: center;
+	color: #FFF;
+}
+
+h3 a {
+	color: #FFF;
+}
+
+a {
+	color: #FFF;
+}
+
+h1 {
+	margin-top: 100px;
+	text-align:center;
+	font-size:60px;
+	font-family: 'Bree Serif', 'serif';
+	}
+
+#container {
+	margin: 0 auto;
+}
+
+p {
+	text-align: center;
+}
+
+nav {
+	margin: 50px 0;
+	background-color: #E64A19;
+}
+
+nav ul {
+	list-style: none;
+	position: relative;
+	}
+
+nav ul li {
+	display:inline-block;
+	background-color: #E64A19;
+	}
+
+nav a {
+	display:block;
+	padding:0 10px;
+	color:#FFF;
+	font-size:20px;
+	line-height: 60px;
+	text-decoration:none;
+}
+
+nav a:hover {
+	background-color: #000000;
+}
+
+ul#list {
+    margin-top: -2%;
+    height: 90px;
+    text-align: left;
+    padding: 15px;
+}
+
+
+/* codepen Cal Counter -----------------------------------*/
 
 .table-responsive {
   padding-top: 5px;
@@ -143,7 +226,7 @@ table tr td:first-child {
 }
 
 table tr td:nth-child(2) {
-  width: 70%;
+  /* width: 70%; */
 }
 
 table tr td:nth-child(2) input {
@@ -213,3 +296,5 @@ label {
   font-size: 19px;
 
 }
+
+/* ========================================== */
